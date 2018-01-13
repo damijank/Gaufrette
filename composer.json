@@ -36,7 +36,8 @@
         "mongodb/mongodb": "^1.1",
         "microsoft/azure-storage-blob": "^1.0",
         "akeneo/phpspec-skip-example-extension": "^3.0",
-        "liuggio/fastest": "^1.6"
+        "liuggio/fastest": "^1.6",
+        "php-opencloud/openstack": "~2.0.15"
     },
     "suggest": {
         "knplabs/knp-gaufrette-bundle": "to use with Symfony",
