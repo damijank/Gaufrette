@@ -32,8 +32,8 @@ Read the official [Gaufrette documentation](http://knplabs.github.io/Gaufrette/)
 
 ### Metapackages for adapters
 
-Every maintained adapter now have a dedicated metapackage. You can [find the list on packagist](https://packagist.org/packages/gaufrette/). 
-**We highly recommend you to use them as they contain their own requirements**: you don't need to worry about third-party dependencies 
+Every maintained adapter now have a dedicated metapackage. You can [find the list on packagist](https://packagist.org/packages/gaufrette/).
+**We highly recommend you to use them as they contain their own requirements**: you don't need to worry about third-party dependencies
 to install before using Gaufrette anymore.
 
 ### Symfony integration
@@ -42,7 +42,7 @@ Symfony integration is available through [KnpLabs/KnpGaufretteBundle](https://gi
 
 ### Maintainers
 
-Here is the list of dedicated maintainer(s) for every adapter not deprecated. If you don't receive any response to 
+Here is the list of dedicated maintainer(s) for every adapter not deprecated. If you don't receive any response to
 your issue or pull request in a timely manner, ping us:
 
 | Adapter            | Referent                    |
@@ -62,21 +62,41 @@ your issue or pull request in a timely manner, ping us:
 
 For `InMemory`, `Local` and `Zip` adapters everyone in this list is considered as a maintainer.
 
-### Launch the Test Suite
+### Development
 
-Requires:
-  * docker
+Requires the latest versions of :
+  * docker-ce
   * docker-compose
 
-Build images:
+1) Create `.env` file :
+```bash
+$ make dev
+```
+and configure it as you want.
 
-    $ docker-compose build
+2) Install dependencies :
+```bash
+$ make install-deps
+```
 
-Launch the tests:
+3) Run tests :
+```bash
+$ make tests
+```
 
-    $ bin/tests-all
+You can also use a different php version, simply set the `PHP_VERSION` env var
+to any of these values when calling a make target :
+- `5.6`
+- `7.0`
+- `7.1` (default)
+See the [`docker-compose.yml`](/docker-compose.yml) file for more details.
 
-Is it green?
+You'll need to clear the previously installed dependencies when switching from
+a version to an other, to do so, run :
+```bash
+$ make clear-deps
+$ PHP_VERSION=<the_version_you_want_to_use> make install-deps
+```
 
 ### Note
 
