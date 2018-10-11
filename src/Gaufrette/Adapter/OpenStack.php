@@ -224,7 +224,7 @@ final class OpenStack implements Adapter,
      */
     public function rename($sourceKey, $targetKey)
     {
-        if ($this->exists($targetKey)) {
+        if (!$this->exists($sourceKey) || $this->exists($targetKey)) {
             throw StorageFailure::unexpectedFailure(
                 'rename',
                 ['sourceKey' => $sourceKey, 'targetKey' => $targetKey]

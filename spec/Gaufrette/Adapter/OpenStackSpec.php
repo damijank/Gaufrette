@@ -255,6 +255,7 @@ class OpenStackSpec extends ObjectBehavior
 
     function it_renames_file(Container $container, StorageObject $source, StorageObject $dest)
     {
+        $container->objectExists('source')->willReturn(true);
         $container->objectExists('dest')->willReturn(false);
 
         $container->getObject('source')->willReturn($source);
@@ -273,8 +274,16 @@ class OpenStackSpec extends ObjectBehavior
         $this->rename('source', 'dest')->shouldNotThrow();
     }
 
+    function it_throws_storage_failure_when_source_does_not_exist_during_rename(Container $container)
+    {
+        $container->objectExists('source')->willReturn(false);
+
+        $this->shouldThrow('Gaufrette\Exception\StorageFailure')->duringrename('source', 'dest');
+    }
+
     function it_throws_storage_failure_when_dest_already_exists_during_rename(Container $container)
     {
+        $container->objectExists('source')->willReturn(true);
         $container->objectExists('dest')->willReturn(true);
 
         $this->shouldThrow('Gaufrette\Exception\StorageFailure')->duringrename('source', 'dest');
